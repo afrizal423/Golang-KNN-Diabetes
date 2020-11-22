@@ -6,6 +6,13 @@ import (
 )
 
 func main() {
-	asd := core.Buka_file("diabetes.csv")
-	fmt.Println(asd)
+	dataset := core.Buka_file("diabetes.csv")
+
+	// pisah data menjadi data train dan data test
+	persentase_pembagian_data := 0.4 // 40 persen data train
+	testset, trainset := core.Test_train_data(dataset, persentase_pembagian_data)
+
+	fmt.Println("jumlah data", len(dataset))
+	fmt.Println("test data", len(testset))
+	fmt.Println("train data", len(trainset))
 }

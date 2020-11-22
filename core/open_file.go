@@ -13,19 +13,20 @@ func Buka_file(path string) []structs.DiabetesRecord {
 	diabetdata, err := os.Open(path)
 	error_handle.ErrHandle(err)
 	defer diabetdata.Close()
-
+	// membaca file csv
 	reader := csv.NewReader(diabetdata)
 	reader.Comma = ','
 
 	var dataset []structs.DiabetesRecord
 
 	for {
+		// membaca file tiap baris
 		record, err := reader.Read()
 		if err == io.EOF {
 			break
 		}
 		error_handle.ErrHandle(err)
-
+		// memasukkan ke array dataset
 		dataset = append(dataset, ParsingDataDiabet(record))
 	}
 	return dataset
@@ -33,7 +34,7 @@ func Buka_file(path string) []structs.DiabetesRecord {
 
 func ParsingDataDiabet(data []string) structs.DiabetesRecord {
 	var diabet structs.DiabetesRecord
-
+	// memasukkan data ke struck / atau array of object variable diabet
 	diabet.Pregnancies, _ = strconv.ParseFloat(data[0], 64)
 	diabet.Glucose, _ = strconv.ParseFloat(data[1], 64)
 	diabet.BloodPressure, _ = strconv.ParseFloat(data[2], 64)
