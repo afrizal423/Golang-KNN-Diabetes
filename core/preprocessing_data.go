@@ -10,21 +10,8 @@ type mean struct {
 }
 
 func Hilangkan_0(data []structs.DiabetesRecord, bantu []structs.DiabetesRecord) []structs.DiabetesRecord {
-	// var kolom = [...]string{"Insulin"}
-	// fmt.Println("jumlah data sebelum", len(data))
-	// fmt.Println("jumlah data sebelum", data[0].Insulin)
+
 	hasil := func(data []structs.DiabetesRecord, kolom string) float64 {
-		// var data []structs.DiabetesRecord
-		// var hitung []mean
-		// for i := range data {
-		// 	rulenya := mean{}
-		// 	if data[i].Insulin == 0 {
-		// 		rulenya.Kolom = "Insulin"
-		// 		rulenya.Hasil = 0
-		// 		hitung = append(hitung, rulenya)
-		// 	}
-		// }
-		// var hitung []mean
 
 		nilai_Glucose := 0.0
 		nilai_BloodPressure := 0.0

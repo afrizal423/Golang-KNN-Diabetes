@@ -26,10 +26,10 @@ func Clean_data(data []structs.DiabetesRecord) {
 	// fmt.Println(s)
 	graph := chart.Chart{
 		XAxis: chart.XAxis{
-			Name: "The XAxis",
+			Name: "Jumlah Data",
 		},
 		YAxis: chart.YAxis{
-			Name: "The YAxis",
+			Name: "Y Axis",
 		},
 		Series: []chart.Series{
 			chart.ContinuousSeries{
@@ -43,7 +43,7 @@ func Clean_data(data []structs.DiabetesRecord) {
 		},
 	}
 
-	f, _ := os.Create("output2.png")
+	f, _ := os.Create("output.png")
 	defer f.Close()
 	graph.Render(chart.PNG, f)
 }
