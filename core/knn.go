@@ -12,14 +12,14 @@ type Hasil struct {
 	aktual   int64
 }
 
-func KNearestNeighbor(k int, dataTrain []structs.DiabetesRecord, dataTest []structs.DiabetesRecord) {
+func KNearestNeighbor(k int, dataTrain []structs.DiabetesRecord, dataTest []structs.DiabetesRecord, distance_matrics string) float64 {
 	var predictions []int64
 	var simpan_hasil []Hasil
 	for x := range dataTest {
 		tmp := Hasil{}
 		// fmt.Println(dataTest[x])
 		// fmt.Println("\ntes datanya ", dataTest[x])
-		neighbors := getNeighbors(dataTrain, dataTest[x], k)
+		neighbors := getNeighbors(dataTrain, dataTest[x], k, distance_matrics)
 		result := getResponse(neighbors)
 		// fmt.Println(result[0].key)
 		predictions = append(predictions, result[0].key)
@@ -30,12 +30,12 @@ func KNearestNeighbor(k int, dataTrain []structs.DiabetesRecord, dataTest []stru
 	}
 	// fmt.Println(predictions)
 	// fmt.Println(getAccuracy(dataTest, predictions))
-	ConfusionMatrix(simpan_hasil)
+	return ConfusionMatrix(simpan_hasil)
 }
 
 type distancePair struct {
 	record   structs.DiabetesRecord
-	distance int64
+	distance float64
 }
 
 type distancePairs []distancePair
@@ -44,14 +44,41 @@ func (slice distancePairs) Len() int           { return len(slice) }
 func (slice distancePairs) Less(i, j int) bool { return slice[i].distance < slice[j].distance }
 func (slice distancePairs) Swap(i, j int)      { slice[i], slice[j] = slice[j], slice[i] }
 
-func getNeighbors(trainingSet []structs.DiabetesRecord, testRecord structs.DiabetesRecord, k int) []structs.DiabetesRecord {
+func getNeighbors(trainingSet []structs.DiabetesRecord, testRecord structs.DiabetesRecord, k int, distance_matrics string) []structs.DiabetesRecord {
 	var distances distancePairs
 	// fmt.Println(len(trainingSet))
 	for i := range trainingSet {
-		dist := distance_metrics.EuclidianDistance(testRecord, trainingSet[i])
-		// fmt.Println(trainingSet[i], dist)
+		if distance_matrics == "manhattan" {
+			dist := distance_metrics.Manhattan(testRecord, trainingSet[i])
 
-		distances = append(distances, distancePair{trainingSet[i], dist})
+			distances = append(distances, distancePair{trainingSet[i], dist})
+		}
+		if distance_matrics == "minkowski" {
+			dist := distance_metrics.MinkowskiDistance(testRecord, trainingSet[i], 3)
+
+			distances = append(distances, distancePair{trainingSet[i], dist})
+		}
+		if distance_matrics == "braycurtis" {
+			dist := distance_metrics.BrayCurtisDistance(testRecord, trainingSet[i])
+
+			distances = append(distances, distancePair{trainingSet[i], dist})
+		}
+		if distance_matrics == "canberra" {
+			dist := distance_metrics.CanberraDistance(testRecord, trainingSet[i])
+
+			distances = append(distances, distancePair{trainingSet[i], dist})
+		}
+		if distance_matrics == "euclidean" {
+			dist := distance_metrics.EuclidianDistance(testRecord, trainingSet[i])
+
+			distances = append(distances, distancePair{trainingSet[i], dist})
+		} else {
+			dist := distance_metrics.EuclidianDistance(testRecord, trainingSet[i])
+
+			distances = append(distances, distancePair{trainingSet[i], dist})
+		}
+
+		// fmt.Println(trainingSet[i], dist)
 	}
 	sort.Sort(distances)
 	// fmt.Println(distances)

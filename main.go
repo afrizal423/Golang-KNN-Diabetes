@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"fp_datmin_03_19_92/core"
+	"fp_datmin_03_19_92/core/helper/plot"
 )
 
 func main() {
@@ -12,8 +13,8 @@ func main() {
 	persentase_pembagian_data := 0.40 // 40 persen data train
 	// cleaning := core.Hilangkan_0(dataset)
 
-	dataclean := core.Hilangkan_0(dataset, dataset)
-	testset, trainset := core.Test_train_data(dataclean, persentase_pembagian_data)
+	// dataclean := core.Hilangkan_0(dataset, dataset)
+	testset, trainset := core.Test_train_data(dataset, persentase_pembagian_data)
 
 	// fmt.Println(core.Hilangkan_0(dataset))
 	// fmt.Println("jumlah data clean", len(dataclean))
@@ -22,7 +23,24 @@ func main() {
 	fmt.Println("train data", len(trainset))
 	// plot.Clean_data(dataclean)
 	// fmt.Println(trainset)
-
-	var k int = 3
-	core.KNearestNeighbor(k, trainset, testset)
+	var manhattan []float64
+	var minkowski []float64
+	var braycurtis []float64
+	var canberra []float64
+	var euclidean []float64
+	for i := 1; i <= 10; i++ {
+		// sum += i
+		fmt.Println("data ke ", i)
+		// coba := core.KNearestNeighbor(i, trainset, testset, "braycurtis")
+		manhattan = append(manhattan, core.KNearestNeighbor(i, trainset, testset, "manhattan"))
+		minkowski = append(minkowski, core.KNearestNeighbor(i, trainset, testset, "minkowski"))
+		braycurtis = append(braycurtis, core.KNearestNeighbor(i, trainset, testset, "braycurtis"))
+		canberra = append(canberra, core.KNearestNeighbor(i, trainset, testset, "canberra"))
+		euclidean = append(euclidean, core.KNearestNeighbor(i, trainset, testset, "euclidean"))
+		// fmt.Println(coba)
+	}
+	plot.Hasil(manhattan, minkowski, braycurtis, canberra, euclidean)
+	// fmt.Println(braycurtis, manhattan)
+	// var k int = 6
+	// core.KNearestNeighbor(k, trainset, testset)
 }

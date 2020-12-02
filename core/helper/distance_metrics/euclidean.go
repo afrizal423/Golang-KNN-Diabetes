@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func EuclidianDistance(instanceSatu structs.DiabetesRecord, instanceDua structs.DiabetesRecord) int64 {
+func EuclidianDistance(instanceSatu structs.DiabetesRecord, instanceDua structs.DiabetesRecord) float64 {
 	var distance float64
 
 	distance += math.Pow((instanceSatu.Pregnancies - instanceDua.Pregnancies), 2)
@@ -16,6 +16,6 @@ func EuclidianDistance(instanceSatu structs.DiabetesRecord, instanceDua structs.
 	distance += math.Pow((instanceSatu.BMI - instanceDua.BMI), 2)
 	distance += math.Pow((instanceSatu.DiabetesPedigreeFunction - instanceDua.DiabetesPedigreeFunction), 2)
 	distance += math.Pow((instanceSatu.Age - instanceDua.Age), 2)
-
-	return int64(math.Sqrt(distance))
+	// fmt.Println(int64(math.Sqrt(distance)))
+	return float64(math.Sqrt(distance))
 }
