@@ -13,10 +13,10 @@ func Test_train_data(data []structs.DiabetesRecord, persentase_data float64) ([]
 		// jika random integer kurang persentase_data,
 		// maka akan memasukkan ke array trainSet
 		if rand.Float64() < persentase_data {
-			trainSet = append(trainSet, data[i])
+			testSet = append(testSet, data[i])
 		} else {
 			// jika tidak maka akan masuk ke array testSet
-			testSet = append(testSet, data[i])
+			trainSet = append(trainSet, data[i])
 		}
 	}
 	return testSet, trainSet
