@@ -1,6 +1,6 @@
 package core
 
-func ConfusionMatrix(array []Hasil) float64 {
+func ConfusionMatrix(array []Hasil, k int, distance_matrics string) float64 {
 	// fmt.Println(array)
 	var (
 		tp float64 = 0
@@ -30,10 +30,14 @@ func ConfusionMatrix(array []Hasil) float64 {
 	// fmt.Println("hasil tn ", tn)
 	// fmt.Println("hasil fp ", fp)
 	// fmt.Println("hasil fn ", fn)
+	// fmt.Println("\n================================================")
+	// fmt.Println("Tipe Distance Matrix = ", distance_matrics)
+	// fmt.Println("K = ", k)
+	// fmt.Println("================================================")
 	// fmt.Println("AKURASI = ", float64((tp+tn)/(tp+fp+fn+tn)*100))
 	// fmt.Println("PRECISSION = ", float64((tp)/(tp+fp)))
 	// fmt.Println("RECALL = ", float64((tp)/(tp+fn)))
-	// fmt.Println("SPECIFICITY = ", float64((tn)/(tn+fp)))
+	// // fmt.Println("SPECIFICITY = ", float64((tn)/(tn+fp)))
 	// fmt.Println("F1 SCORE = ", float64(2*(recall*precission)/(recall+precission)))
 
 	return float64((tp + tn) / (tp + fp + fn + tn) * 100) // akurasi

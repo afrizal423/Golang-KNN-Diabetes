@@ -30,7 +30,7 @@ func KNearestNeighbor(k int, dataTrain []structs.DiabetesRecord, dataTest []stru
 	}
 	// fmt.Println(predictions)
 	// fmt.Println(getAccuracy(dataTest, predictions))
-	return ConfusionMatrix(simpan_hasil)
+	return ConfusionMatrix(simpan_hasil, k, distance_matrics)
 }
 
 type distancePair struct {
@@ -70,6 +70,16 @@ func getNeighbors(trainingSet []structs.DiabetesRecord, testRecord structs.Diabe
 		}
 		if distance_matrics == "euclidean" {
 			dist := distance_metrics.EuclidianDistance(testRecord, trainingSet[i])
+
+			distances = append(distances, distancePair{trainingSet[i], dist})
+		}
+		if distance_matrics == "l1" {
+			dist := distance_metrics.L1Distance(testRecord, trainingSet[i])
+
+			distances = append(distances, distancePair{trainingSet[i], dist})
+		}
+		if distance_matrics == "consine" {
+			dist := distance_metrics.ConsineSimilarity(testRecord, trainingSet[i])
 
 			distances = append(distances, distancePair{trainingSet[i], dist})
 		} else {

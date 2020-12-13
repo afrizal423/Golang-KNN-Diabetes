@@ -10,7 +10,7 @@ func main() {
 	dataset := core.Buka_file("diabetes.csv")
 
 	// pisah data menjadi data train dan data test
-	persentase_pembagian_data := 0.40 // 40 persen data train
+	persentase_pembagian_data := 0.25 // 40 persen data train
 	// cleaning := core.Hilangkan_0(dataset)
 
 	// dataclean := core.Hilangkan_0(dataset, dataset)
@@ -28,19 +28,27 @@ func main() {
 	var braycurtis []float64
 	var canberra []float64
 	var euclidean []float64
-	for i := 1; i <= 10; i++ {
+	var jumlah []float64
+	var L1Dist []float64
+	var consine []float64
+	fmt.Println("\nMohon ditunggu, sistem dalam perhitungan")
+	for i := 1; i <= 50; i++ {
 		// sum += i
-		fmt.Println("data ke ", i)
+		// fmt.Println("data ke ", i)
 		// coba := core.KNearestNeighbor(i, trainset, testset, "braycurtis")
 		manhattan = append(manhattan, core.KNearestNeighbor(i, trainset, testset, "manhattan"))
 		minkowski = append(minkowski, core.KNearestNeighbor(i, trainset, testset, "minkowski"))
 		braycurtis = append(braycurtis, core.KNearestNeighbor(i, trainset, testset, "braycurtis"))
 		canberra = append(canberra, core.KNearestNeighbor(i, trainset, testset, "canberra"))
 		euclidean = append(euclidean, core.KNearestNeighbor(i, trainset, testset, "euclidean"))
+		L1Dist = append(L1Dist, core.KNearestNeighbor(i, trainset, testset, "l1"))
+		consine = append(consine, core.KNearestNeighbor(i, trainset, testset, "consine"))
+		jumlah = append(jumlah, float64(i))
 		// fmt.Println(coba)
 	}
-	plot.Hasil(manhattan, minkowski, braycurtis, canberra, euclidean)
-	// fmt.Println(braycurtis, manhattan)
+
+	plot.Hasil(manhattan, minkowski, braycurtis, canberra, euclidean, L1Dist, consine, jumlah)
+	// fmt.Println(jumlah)
 	// var k int = 6
 	// core.KNearestNeighbor(k, trainset, testset)
 }

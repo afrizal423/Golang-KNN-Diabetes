@@ -4,19 +4,21 @@ import (
 	"bytes"
 	"log"
 	"os"
+	"time"
 
 	chart "github.com/wcharczuk/go-chart/v2"
 )
 
-func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canberra []float64, euclidean []float64) {
+// Hasil ...
+func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canberra []float64, euclidean []float64, L1Dist []float64, consine []float64, jumlah []float64) {
 	// fmt.Println(braycurtis, manhattan)
 
 	ts1 := chart.ContinuousSeries{ //TimeSeries{
 		Style: chart.Style{
-			StrokeColor: chart.GetDefaultColor(7),
+			StrokeColor: chart.GetDefaultColor(3),
 		},
 		Name:    "Manhattan",
-		XValues: []float64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+		XValues: jumlah,
 		YValues: manhattan,
 	}
 
@@ -25,7 +27,7 @@ func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canbe
 			StrokeColor: chart.GetDefaultColor(0),
 		},
 		Name:    "MinkowskiDistance",
-		XValues: []float64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+		XValues: jumlah,
 		YValues: minkowski,
 	}
 	ts3 := chart.ContinuousSeries{ //TimeSeries{
@@ -33,7 +35,7 @@ func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canbe
 			StrokeColor: chart.GetDefaultColor(1),
 		},
 		Name:    "BrayCurtisDistance",
-		XValues: []float64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+		XValues: jumlah,
 		YValues: braycurtis,
 	}
 	ts4 := chart.ContinuousSeries{ //TimeSeries{
@@ -41,7 +43,7 @@ func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canbe
 			StrokeColor: chart.GetDefaultColor(2),
 		},
 		Name:    "CanberraDistance",
-		XValues: []float64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+		XValues: jumlah,
 		YValues: canberra,
 	}
 	ts5 := chart.ContinuousSeries{ //TimeSeries{
@@ -49,8 +51,24 @@ func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canbe
 			StrokeColor: chart.GetDefaultColor(9),
 		},
 		Name:    "Euclidean",
-		XValues: []float64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+		XValues: jumlah,
 		YValues: euclidean,
+	}
+	ts6 := chart.ContinuousSeries{ //TimeSeries{
+		Style: chart.Style{
+			StrokeColor: chart.GetAlternateColor(2),
+		},
+		Name:    "L1 Distance",
+		XValues: jumlah,
+		YValues: L1Dist,
+	}
+	ts7 := chart.ContinuousSeries{ //TimeSeries{
+		Style: chart.Style{
+			StrokeColor: chart.GetAlternateColor(3),
+		},
+		Name:    "Consine Distance",
+		XValues: jumlah,
+		YValues: consine,
 	}
 
 	graph := chart.Chart{
@@ -75,6 +93,8 @@ func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canbe
 			ts3,
 			ts4,
 			ts5,
+			ts6,
+			ts7,
 		},
 	}
 	//note we have to do this as a separate step because we need a reference to graph
@@ -87,8 +107,9 @@ func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canbe
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fo, err := os.Create("output.png")
+	tm := time.Now()
+	ass := tm.Format("01-02-2006 15:04:05")
+	fo, err := os.Create("plot_hasil/output " + ass + ".png")
 	if err != nil {
 		panic(err)
 	}
