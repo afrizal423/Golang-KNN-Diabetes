@@ -13,8 +13,8 @@ func main() {
 	persentase_pembagian_data := 0.25 // 40 persen data train
 	// cleaning := core.Hilangkan_0(dataset)
 
-	// dataclean := core.Hilangkan_0(dataset, dataset)
-	testset, trainset := core.Test_train_data(dataset, persentase_pembagian_data)
+	dataclean := core.Hilangkan_0(dataset, dataset)
+	testset, trainset := core.Test_train_data(dataclean, persentase_pembagian_data)
 
 	// fmt.Println(core.Hilangkan_0(dataset))
 	// fmt.Println("jumlah data clean", len(dataclean))

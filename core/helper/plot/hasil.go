@@ -84,7 +84,7 @@ func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canbe
 		},
 
 		YAxis: chart.YAxis{
-			Name: "Akurasi",
+			Name: "Mean Error",
 		},
 
 		Series: []chart.Series{
