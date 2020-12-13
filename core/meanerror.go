@@ -8,7 +8,7 @@ func MeanError(array []Hasil, k int) float64 {
 	)
 	for x := range array {
 		if array[x].aktual != array[x].prediksi {
-			number++
+			number += array[x].aktual + array[x].prediksi
 		}
 	}
 	// fmt.Println(float64(number) / float64(len(array)))

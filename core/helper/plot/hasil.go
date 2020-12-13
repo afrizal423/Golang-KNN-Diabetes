@@ -66,7 +66,7 @@ func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canbe
 		Style: chart.Style{
 			StrokeColor: chart.GetAlternateColor(3),
 		},
-		Name:    "Consine Distance",
+		Name:    "Consine Similarity",
 		XValues: jumlah,
 		YValues: consine,
 	}
