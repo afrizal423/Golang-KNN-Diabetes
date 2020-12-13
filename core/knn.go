@@ -31,6 +31,7 @@ func KNearestNeighbor(k int, dataTrain []structs.DiabetesRecord, dataTest []stru
 	// fmt.Println(predictions)
 	// fmt.Println(getAccuracy(dataTest, predictions))
 
+	// ubah disini
 	ConfusionMatrix(simpan_hasil, k, distance_matrics)
 	return MeanError(simpan_hasil, k)
 }
