@@ -12,7 +12,8 @@ type Hasil struct {
 	aktual   int64
 }
 
-func KNearestNeighbor(k int, dataTrain []structs.DiabetesRecord, dataTest []structs.DiabetesRecord, distance_matrics string) float64 {
+// KNearestNeighbor ...
+func KNearestNeighbor(k int, dataTrain []structs.DiabetesRecord, dataTest []structs.DiabetesRecord, distance_matrics string) (float64, float64) {
 	var predictions []int64
 	var simpan_hasil []Hasil
 	for x := range dataTest {
@@ -33,8 +34,8 @@ func KNearestNeighbor(k int, dataTrain []structs.DiabetesRecord, dataTest []stru
 
 	// ubah disini
 	// ConfusionMatrix(simpan_hasil, k, distance_matrics)
-	MeanError(simpan_hasil, k)
-	return ConfusionMatrix(simpan_hasil, k, distance_matrics)
+
+	return ConfusionMatrix(simpan_hasil, k, distance_matrics), MeanError(simpan_hasil, k)
 }
 
 type distancePair struct {

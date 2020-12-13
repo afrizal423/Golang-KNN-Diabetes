@@ -1,54 +1,54 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"fp_datmin_03_19_92/core"
-	"fp_datmin_03_19_92/core/helper/plot"
+	"os"
 )
 
 func main() {
-	dataset := core.Buka_file("diabetes.csv")
+	// core.RunAll()
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Println("========================================")
+	fmt.Println("Final Project Data Mining 2020")
+	fmt.Println("========================================")
+	fmt.Println("Judul: Deteksi Diabetes Menggunakan Metode KNearestNeighbor")
+	fmt.Println("By:")
+	fmt.Println("Dina Puspitaningrum (17081010003)\nNurlisa Aulia Seetyaningrum (17081010019)\nAfrizal Muhammad Yasin (17081010092)")
+	fmt.Println("========================================")
+	status := true
 
-	// pisah data menjadi data train dan data test
-	persentase_pembagian_data := 0.25 // 40 persen data train
-	// cleaning := core.Hilangkan_0(dataset)
+	for status {
+		fmt.Println("\nPilihan Menu")
+		fmt.Println("1. Klasifikasi dengan inputan user")
+		fmt.Println("2. Lihat Akurasi dataset")
+		fmt.Println("3. Keluar Program")
+		fmt.Println("\nMasukkan Pilihan: ")
+		pil, _, _ := reader.ReadRune()
 
-	dataclean := core.Hilangkan_0(dataset, dataset)
-	testset, trainset := core.Test_train_data(dataclean, persentase_pembagian_data)
-
-	// fmt.Println(core.Hilangkan_0(dataset))
-	// fmt.Println("jumlah data clean", len(dataclean))
-	fmt.Println("jumlah data", len(dataset))
-	fmt.Println("test data", len(testset))
-	fmt.Println("train data", len(trainset))
-	// plot.Clean_data(dataclean)
-	// fmt.Println(trainset)
-	var manhattan []float64
-	var minkowski []float64
-	var braycurtis []float64
-	var canberra []float64
-	var euclidean []float64
-	var jumlah []float64
-	var L1Dist []float64
-	var consine []float64
-	fmt.Println("\nMohon ditunggu, sistem dalam perhitungan")
-	for i := 1; i <= 50; i++ {
-		// sum += i
-		// fmt.Println("data ke ", i)
-		// coba := core.KNearestNeighbor(i, trainset, testset, "braycurtis")
-		manhattan = append(manhattan, core.KNearestNeighbor(i, trainset, testset, "manhattan"))
-		minkowski = append(minkowski, core.KNearestNeighbor(i, trainset, testset, "minkowski"))
-		braycurtis = append(braycurtis, core.KNearestNeighbor(i, trainset, testset, "braycurtis"))
-		canberra = append(canberra, core.KNearestNeighbor(i, trainset, testset, "canberra"))
-		euclidean = append(euclidean, core.KNearestNeighbor(i, trainset, testset, "euclidean"))
-		L1Dist = append(L1Dist, core.KNearestNeighbor(i, trainset, testset, "l1"))
-		consine = append(consine, core.KNearestNeighbor(i, trainset, testset, "consine"))
-		jumlah = append(jumlah, float64(i))
-		// fmt.Println(coba)
+		// fmt.Print("\033[H\033[2J")
+		if pil == '1' {
+			fmt.Print("Coming Soon")
+		}
+		if pil == '2' {
+			fmt.Print("\033[H\033[2J")
+			core.RunAll()
+		}
+		if pil == '3' {
+			status = stop()
+		}
 	}
 
-	plot.Hasil(manhattan, minkowski, braycurtis, canberra, euclidean, L1Dist, consine, jumlah)
-	// fmt.Println(jumlah)
-	// var k int = 6
-	// core.KNearestNeighbor(k, trainset, testset)
+}
+
+func stop() bool {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Println("\napakah ingin menghentikan aplikasi?")
+	stop, _, _ := reader.ReadRune()
+	var status bool
+	if stop == 'y' || stop == '1' {
+		status = false
+	}
+	return status
 }

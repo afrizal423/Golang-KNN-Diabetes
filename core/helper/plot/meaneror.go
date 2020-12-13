@@ -9,8 +9,8 @@ import (
 	chart "github.com/wcharczuk/go-chart/v2"
 )
 
-// Hasil ...
-func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canberra []float64, euclidean []float64, L1Dist []float64, consine []float64, jumlah []float64) {
+// MeanError ...
+func MeanError(manhattan []float64, minkowski []float64, braycurtis []float64, canberra []float64, euclidean []float64, L1Dist []float64, consine []float64, jumlah []float64) {
 	// fmt.Println(braycurtis, manhattan)
 
 	ts1 := chart.ContinuousSeries{ //TimeSeries{
@@ -84,7 +84,7 @@ func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canbe
 		},
 
 		YAxis: chart.YAxis{
-			Name: "Akurasi",
+			Name: "Mean Error",
 		},
 
 		Series: []chart.Series{
@@ -109,7 +109,7 @@ func Hasil(manhattan []float64, minkowski []float64, braycurtis []float64, canbe
 	}
 	tm := time.Now()
 	ass := tm.Format("01-02-2006 15:04:05")
-	fo, err := os.Create("plot_hasil/output " + ass + ".png")
+	fo, err := os.Create("plot_hasil/mean_error/output " + ass + ".png")
 	if err != nil {
 		panic(err)
 	}
