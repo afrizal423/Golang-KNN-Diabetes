@@ -32,8 +32,10 @@ func main() {
 
 		// fmt.Print("\033[H\033[2J")
 		if pil == '1' {
+			fmt.Print("\033[H\033[2J")
 			reader := bufio.NewReader(os.Stdin)
-			fmt.Println(inputuser(reader))
+			// fmt.Println(inputuser(reader))
+			core.InputanUserProses(inputuser(reader))
 		}
 		if pil == '2' {
 			fmt.Print("\033[H\033[2J")

@@ -57,37 +57,37 @@ func RunAll() {
 	fmt.Println("nilai k", k)
 	for i := 1; i <= int(k); i++ {
 		// manhattan
-		mnht, memnht := KNearestNeighbor(i, trainset, testset, "manhattan")
+		mnht, memnht, _ := KNearestNeighbor(i, trainset, testset, "manhattan")
 		manhattan = append(manhattan, mnht)
 		MEmanhattan = append(MEmanhattan, memnht)
 
 		//minkowski
-		mnkw, memnkw := KNearestNeighbor(i, trainset, testset, "minkowski")
+		mnkw, memnkw, _ := KNearestNeighbor(i, trainset, testset, "minkowski")
 		minkowski = append(minkowski, mnkw)
 		MEminkowski = append(MEminkowski, memnkw)
 
 		//braycurtis
-		bry, mebry := KNearestNeighbor(i, trainset, testset, "braycurtis")
+		bry, mebry, _ := KNearestNeighbor(i, trainset, testset, "braycurtis")
 		braycurtis = append(braycurtis, bry)
 		MEbraycurtis = append(MEbraycurtis, mebry)
 
 		// canberra
-		cnb, mecnb := KNearestNeighbor(i, trainset, testset, "canberra")
+		cnb, mecnb, _ := KNearestNeighbor(i, trainset, testset, "canberra")
 		canberra = append(canberra, cnb)
 		MEcanberra = append(MEcanberra, mecnb)
 
 		// euclidean
-		euc, meeuc := KNearestNeighbor(i, trainset, testset, "euclidean")
+		euc, meeuc, _ := KNearestNeighbor(i, trainset, testset, "euclidean")
 		euclidean = append(euclidean, euc)
 		MEeuclidean = append(MEeuclidean, meeuc)
 
 		// L1
-		l1, mel1 := KNearestNeighbor(i, trainset, testset, "l1")
+		l1, mel1, _ := KNearestNeighbor(i, trainset, testset, "l1")
 		L1Dist = append(L1Dist, l1)
 		MEL1Dist = append(MEL1Dist, mel1)
 
 		//consine
-		csn, mecsn := KNearestNeighbor(i, trainset, testset, "consine")
+		csn, mecsn, _ := KNearestNeighbor(i, trainset, testset, "consine")
 		consine = append(consine, csn)
 		MEconsine = append(MEconsine, mecsn)
 		jumlah = append(jumlah, float64(i))
