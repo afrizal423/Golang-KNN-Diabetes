@@ -1,5 +1,7 @@
 package core
 
+import "fmt"
+
 func ConfusionMatrix(array []Hasil, k int, distance_matrics string) float64 {
 	// fmt.Println(array)
 	var (
@@ -30,11 +32,15 @@ func ConfusionMatrix(array []Hasil, k int, distance_matrics string) float64 {
 	// fmt.Println("hasil tn ", tn)
 	// fmt.Println("hasil fp ", fp)
 	// fmt.Println("hasil fn ", fn)
-	// fmt.Println("\n================================================")
-	// fmt.Println("Tipe Distance Matrix = ", distance_matrics)
-	// fmt.Println("K = ", k)
-	// fmt.Println("================================================")
-	// fmt.Println("AKURASI = ", float64((tp+tn)/(tp+fp+fn+tn)*100))
+	fmt.Println("\n================================================")
+	fmt.Println("Tipe Distance Matrix = ", distance_matrics)
+	fmt.Println("K = ", k)
+	fmt.Println("==================================================")
+	fmt.Println("AKURASI = ", float64((tp+tn)/(tp+fp+fn+tn)))
+	fmt.Println("ERROR RATE = ", float64((fp+fn)/(tp+fp+fn+tn)))
+	fmt.Println("SENSITIVITY = ", float64((tp)/(tp+fn)))
+	fmt.Println("SPECIFICITY = ", float64((tn)/(tn+fp)))
+	fmt.Println("==================================================")
 	// fmt.Println("PRECISSION = ", float64((tp)/(tp+fp)))
 	// fmt.Println("RECALL = ", float64((tp)/(tp+fn)))
 	// // fmt.Println("SPECIFICITY = ", float64((tn)/(tn+fp)))
