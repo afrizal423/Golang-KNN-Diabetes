@@ -2,6 +2,9 @@ package helper
 
 import "math"
 
+// Semua fungsi untuk meng-generate angka float.
+// maksudnya ingin menampilkan berapa angka dibelakang koma
+
 func round(num float64) int {
 	return int(num + math.Copysign(0.5, num))
 }
