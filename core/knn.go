@@ -20,8 +20,8 @@ func KNearestNeighbor(k int, dataTrain []structs.DiabetesRecord, dataTest []stru
 		tmp := Hasil{}
 		// fmt.Println(dataTest[x])
 		// fmt.Println("\ntes datanya ", dataTest[x])
-		neighbors := getNeighbors(dataTrain, dataTest[x], k, distance_matrics)
-		result := getResponse(neighbors)
+		neighbors := cariNeighborsTerdekat(dataTrain, dataTest[x], k, distance_matrics)
+		result := klasifikasi(neighbors)
 		// fmt.Println(result[0].key)
 		predictions = append(predictions, result[0].key)
 		tmp.prediksi = result[0].key
@@ -49,7 +49,7 @@ func (slice distancePairs) Len() int           { return len(slice) }
 func (slice distancePairs) Less(i, j int) bool { return slice[i].distance < slice[j].distance }
 func (slice distancePairs) Swap(i, j int)      { slice[i], slice[j] = slice[j], slice[i] }
 
-func getNeighbors(trainingSet []structs.DiabetesRecord, testRecord structs.DiabetesRecord, k int, distance_matrics string) []structs.DiabetesRecord {
+func cariNeighborsTerdekat(trainingSet []structs.DiabetesRecord, testRecord structs.DiabetesRecord, k int, distance_matrics string) []structs.DiabetesRecord {
 	var distances distancePairs
 	// fmt.Println(len(trainingSet))
 	for i := range trainingSet {
@@ -122,7 +122,7 @@ func (scv sortedClassVotes) Len() int           { return len(scv) }
 func (scv sortedClassVotes) Less(i, j int) bool { return scv[i].value < scv[j].value }
 func (scv sortedClassVotes) Swap(i, j int)      { scv[i], scv[j] = scv[j], scv[i] }
 
-func getResponse(neighbors []structs.DiabetesRecord) sortedClassVotes {
+func klasifikasi(neighbors []structs.DiabetesRecord) sortedClassVotes {
 	classVotes := make(map[int64]int)
 
 	for x := range neighbors {

@@ -24,10 +24,10 @@ func ConfusionMatrix(array []Hasil, k int, distance_matrics string) float64 {
 			fn += 1
 		}
 	}
-	// var (
-	// 	recall     = float64((tp) / (tp + fn))
-	// 	precission = float64((tp) / (tp + fp))
-	// )
+	var (
+		recall     = float64((tp) / (tp + fn))
+		precission = float64((tp) / (tp + fp))
+	)
 	// fmt.Println("hasil tp ", tp)
 	// fmt.Println("hasil tn ", tn)
 	// fmt.Println("hasil fp ", fp)
@@ -35,16 +35,12 @@ func ConfusionMatrix(array []Hasil, k int, distance_matrics string) float64 {
 	fmt.Println("\n================================================")
 	fmt.Println("Tipe Distance Matrix = ", distance_matrics)
 	fmt.Println("K = ", k)
-	fmt.Println("==================================================")
+	fmt.Println("================================================")
 	fmt.Println("AKURASI = ", float64((tp+tn)/(tp+fp+fn+tn)))
-	fmt.Println("ERROR RATE = ", float64((fp+fn)/(tp+fp+fn+tn)))
-	fmt.Println("SENSITIVITY = ", float64((tp)/(tp+fn)))
-	fmt.Println("SPECIFICITY = ", float64((tn)/(tn+fp)))
-	fmt.Println("==================================================")
-	// fmt.Println("PRECISSION = ", float64((tp)/(tp+fp)))
-	// fmt.Println("RECALL = ", float64((tp)/(tp+fn)))
-	// // fmt.Println("SPECIFICITY = ", float64((tn)/(tn+fp)))
-	// fmt.Println("F1 SCORE = ", float64(2*(recall*precission)/(recall+precission)))
+	fmt.Println("PRECISSION = ", float64((tp)/(tp+fp)))
+	fmt.Println("RECALL = ", float64((tp)/(tp+fn)))
+	// fmt.Println("SPECIFICITY = ", float64((tn)/(tn+fp)))
+	fmt.Println("F1 SCORE = ", float64(2*(recall*precission)/(recall+precission)))
 
-	return float64((tp + tn) / (tp + fp + fn + tn) * 100) // akurasi
+	return float64((tp + tn) / (tp + fp + fn + tn)) // akurasi
 }

@@ -16,7 +16,7 @@ func main() {
 	fmt.Println("========================================")
 	fmt.Println("Final Project Data Mining 2020")
 	fmt.Println("========================================")
-	fmt.Println("Judul: Deteksi Diabetes Menggunakan Metode KNearestNeighbor")
+	fmt.Println("Judul: Klasifikasi Penyakit Diabetes Menggunakan Metode KNearestNeighbor")
 	fmt.Println("By:")
 	fmt.Println("Dina Puspitaningrum (17081010003)\nNurlisa Aulia Seetyaningrum (17081010019)\nAfrizal Muhammad Yasin (17081010092)")
 	fmt.Println("========================================")

@@ -14,7 +14,7 @@ func RunAll() {
 	dataset := Buka_file("diabetes.csv")
 
 	// pisah data menjadi data train dan data test
-	fmt.Println("\nPersentase data train: (ex: 40; yang sama dengan 0.40)")
+	fmt.Println("\nPersentase data test: (ex: 40; yang sama dengan 0.40)")
 	// persentasePembagianData, _, _ := reader.ReadRune()
 	// persentasePembagianData, _ := reader.ReadString('\n')
 	// persen := 0.25 // 40 persen data train
@@ -54,7 +54,7 @@ func RunAll() {
 	fmt.Scanf("%d", &k)
 	fmt.Println("\nMohon ditunggu, sistem dalam perhitungan")
 
-	fmt.Println("nilai k", k)
+	fmt.Println("nilai start k=1 sampai k=", k)
 	for i := 1; i <= int(k); i++ {
 		// manhattan
 		mnht, memnht, _ := KNearestNeighbor(i, trainset, testset, "manhattan")
